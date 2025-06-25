@@ -1,0 +1,331 @@
+1. Who developed JavaScript?
+-> Brendan Eich developed JavaScript.
+
+2. How do you include JavaScript in an HTML file?
+-> Using <script> tag.
+
+3. How do you link external JavaScript?
+-> <script src="script.js"></script>
+
+4. What is Console?
+-> Console is an object used to log information to the browser's debugging console.
+
+5. What is console.log() used for?
+-> Prints output to the browser console for debugging.
+
+6. What is console.war() used for?
+-> It is used to display warning messages, usually highlighted with a yellow icon or color to indicate it's a warning.
+
+7. What is console.error() used for?
+-> It is used to show error messages, usually in red, to indicate something went wrong.
+
+8. What is alert() function?
+-> Displays a popup message box.
+
+9. What is prompt() function?
+-> Prompt() is a function that shows a dialog box asking the user to enter some input.
+
+10. What is confirm() function?
+->  Confirm() is a function that shows a dialog box with "OK" and "Cancel" buttons, asking the user to confirm something.
+
+11. Define JavaScript.
+->  JS is a single threaded programming language used to add interactivity in web pages.
+
+12. Is JavaScript an interpreted language or compiled language?
+-> JavaScript is an interpreted language, not a compiled language.
+
+13. What is ES6?
+-> ES6 is the 6th edition of the ECMAScript standard, officially published in June 2015.
+
+14. Which are the Key features of ES6?
+-> (i) Let and const (ii)Template Literals (iii)Arrow Functions (=>) 
+
+15. Extension for JavaScript.
+-> script.js is the extension used for JavaScript.
+
+16. What is NaN?
+-> "Not‑a‑Number", result of invalid math operations.
+
+17. What do you mean by Variable?
+-> A container to store some Value.
+
+18. Var variable in short.
+-> It can be redeclared and reinitialize both.
+
+19. Let variable in short.
+->  Reinitialize is possible but redeclaration is not possible.
+
+20. Const variable in short.
+-> redeclaration and reinitialization both are not possible.
+
+21. What do you mean by Database?
+->  It tells the computer how to interpret and interact with that piece of data. 
+
+22. How many types of Datatypes are there and which are they?
+-> There are 2 types of Datatype . (i) Primitive (ii) Non-Primitive
+
+23. List the types to Primitive Datatype.
+-> 1.String
+   2.Number
+   3.Boolean
+   4.Null
+   5.Undefined
+   6.Symbol
+   7.Bigint
+
+24. List the types to Non-Primitive Datatype.
+-> 1.Object 
+   2.Array
+   3.Function
+
+25.How to check the type of a value?
+-> Using typeof() operator.
+
+26. What is typeof null?
+->  Returns "object" (legacy bug in JS).
+
+27.What is undefined?
+-> A variable declared but not assigned any value.
+
+28.What is null?
+-> An intentional absence of value.
+
+29.What is Implicit Datatype?
+-> Occurs automatically when the interpreter deems it safe, with no special syntax required.
+( Implicit means datatypes changed by JavaScript )
+
+30.What is Explicit Datatype?
+-> Requires deliberate syntax from the programmer.
+( Explicit means datatype changed by us )
+
+31.How many types of Operators are there?
+-> There are 4 types of operator.
+
+32.List the types of Operators.
+-> 1.Arithmetic Operator
+   2.Comparission Operator
+   3.Logical Operator
+   4.Assignment Operator
+
+33.Arithmetic Operator.
+-> ( +, -, *, /, %, **, ++, --, ) are Arithmetic Operators.
+
+-> Addition (+): 
+   let result = 5 + 3; // result is 8
+
+
+-> Subtraction (-):
+   let result = 10 - 4; // result is 6
+
+
+-> Multiplication (*):
+   let result = 6 * 2; // result is 12
+
+
+-> Division (/): 
+   let result = 15 / 3; // result is 5
+
+
+-> Remainder (%):
+   let result = 10 % 3; // result is 1 (10 divided by 3 is 3 with a remainder of 1)
+
+
+-> Exponentiation (**):
+   let result = 2 ** 3; // result is 8 (2 * 2 * 2)
+
+
+-> Increment (++):
+   let x = 5;
+   let y = ++x; // x is 6, y is 6 (prefix: increments then assigns) 
+
+
+-> Decrement (--):
+   let x = 5;
+   let y = --x; // x is 4, y is 4
+
+
+
+
+34. Comparison Operator:
+-> (==, !=, >, <, >=, <=, ===, !==) are Comparison Operator
+
+-> Loose Equality (==): (It checks only values)
+   console.log(5 == "5"); // true (string "5" is coerced to number 5)
+
+
+-> Strict Equality (===): (It checks both values and datatype)
+   console.log(5 === "5"); // false (number and string are different types)
+
+
+-> Loose Inequality (!=): (Checks if two values are not equal)
+   console.log(5 != "6"); // true
+
+
+-> Strict Inequality (!==): 
+   console.log(5 !== "5"); // true
+
+
+-> Greater than (>): 
+   console.log(10 > 5); // true
+
+
+-> Less than (<):
+   console.log(5 < 10); // true	
+
+
+-> Greater than or equal to (>=): 
+   console.log(10 >= 10); // true
+
+
+-> Less than or equal to (<=):
+   console.log(5 <= 10); // true
+
+
+
+
+
+35. Logical Operator:
+-> (&&, ||, !, ??) are Logical Operator.
+
+
+-> Logical AND (&&):
+◻️ Returns true if both operands are truthy.
+
+    console.log(true && true);   // true
+    console.log(true && false);  // false
+    console.log(false && true);  // false
+    console.log(1 && 0);         // 0 (short-circuits)
+    console.log("hello" && 123); // 123
+
+
+
+
+-> Logical OR (||):
+◻️ Returns true if at least one operand is truthy.
+
+
+    console.log(true || true);    // true
+    console.log(true || false);   // true
+    console.log(false || true);   // true
+    console.log(false || false);  // false
+    console.log(0 || 1);          // 1 (short-circuits)
+    console.log("" || "default"); // "default"
+
+
+
+-> Logical NOT (!):
+◻️ Reverses the Boolean value of its single operand.
+
+
+    console.log(!true);   // false
+    console.log(!false);  // true
+    console.log(!0);      // true
+    console.log(!"hello"); // false
+
+
+
+-> Nullish Coalescing Operator (??):
+◻️ Returns the right-hand operand when the left-hand operand is null or undefined.
+
+
+    console.log(null ?? "default");      // "default"
+    console.log(undefined ?? "default"); // "default"
+    console.log(0 ?? "default");         // 0
+    console.log("" ?? "default");        // ""
+
+
+
+
+
+
+36. Assignment Operator:
+-> (=, +=, -=, *=, /=, %=, **=, &&= , ||=, ??=)
+
+
+-> = (Assignment):
+    let x = 10; // Assigns the value 10 to x
+
+
+
+->  += (Addition Assignment):
+    let x = 5;
+    x += 3; // x is now 8 (equivalent to x = x + 3)
+
+
+
+->  -= (Subtraction Assignment):
+    let x = 10;
+    x -= 4; // x is now 6 (equivalent to x = x - 4)
+
+
+
+->  *= (Multiplication Assignment): 
+    let x = 2;
+    x *= 5; // x is now 10 (equivalent to x = x * 5)
+
+
+
+->  /= (Division Assignment): 
+    let x = 10;
+    x /= 2; // x is now 5 (equivalent to x = x / 2)
+
+
+
+->  %= (Remainder Assignment):
+    let x = 10;
+    x %= 3; // x is now 1 (equivalent to x = x % 3)
+
+
+
+->  **= (Exponentiation Assignment):
+    let x = 2;
+    x **= 3; // x is now 8 (equivalent to x = x ** 3)
+
+
+
+
+
+37. What is datatype of Null?
+-> Object
+
+38. What is == ?
+-> This compare Values.
+
+39. What is === ? 
+-> This compares values and datatype both.
+
+40. How Symbol is written?
+-> let sym = Symbol("sym");
+
+41. Syntax of Template literals.
+
+->  const name = 'Tanvi';
+   console.log(`Hello, ${name}!`); // → Hello, Tanvi!
+
+42. Boolean values in JS?
+->  true and false
+
+43. Falsy values in JS?
+
+-> false
+   0
+   ""
+   null
+   undefined
+   NaN
+
+44. Truthy values?
+    Everything else except falsy values.
+
+45. How do you create a string?
+    Using single ('), double ("), or backtick (`) quotes.
+
+46. What is Bigint Datatype?
+-> This data type is used to store numbers which are above the limitation of the Number data type.(Big Integer)
+
+    var bigInteger =  234567890123456789012345678901234567890;
+
+47. In how many ways we can declare variables in JavaScript?
+->  In JavaScript, there are three ways in which we can declare variables:
+    1. Let    2.Var    3.Const
+
