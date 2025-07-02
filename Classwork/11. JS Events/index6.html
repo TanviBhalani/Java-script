@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Events</title>
+  
+</head>
+<body>
+
+    <style>
+    body{
+        height: 600px;
+    }
+    .card {
+      margin: 28px;
+      width: 300px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: relative;
+      
+    }
+
+    /* card 1 */
+
+    #longPressBtn {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      
+    }
+
+    #progress {
+      width: 0%;
+      height: 5px;
+      background-color: green;
+      margin-top: 5px;
+      transition: width 1s;
+    }
+
+    /* for all buttons */
+    
+    button {
+      background-color: #3498db;
+      padding: 10px 20px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    body.dark {
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+
+    .card.dark {
+      background-color: #f6f3f3;
+      color: black;
+    }
+    #contextMenu {
+      display: none;
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px;
+      z-index: 999;
+      margin-left: 130px;
+      margin-top: 23px;
+    }
+
+    #contextMenu div {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    #contextMenu div:hover {
+      background-color: #d8d6d6;
+    }
+
+    #hoverBtn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    /* We'll apply this class using JavaScript */
+    .grow {
+      transform: scale(1.2);
+    }
+
+
+
+    #loadBtn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      min-width: 120px;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid white;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+        .instruction {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    #toggleBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Hidden by default */
+    .hidden1 {
+      display: none;
+    }
+
+    
+
+
+
+  </style>
+
+<div class="all-cards" style="display: flex;">
+  <div class="left" >
+
+<!-- case-1 -->
+<div class="card">
+    <h3>Case 1: Long Press Action</h3>
+    <button id="longPressBtn">Hold to Save</button>
+    <div id="progress"></div>
+</div>
+
+<!-- case-2 -->
+<div class="card">
+    <h3>Case 2: Double Click to Toggle Theme</h3>
+    <button id="toggleThemeBtn">Double-Click to Toggle Theme</button>
+</div>
+
+
+<!-- Case 3 -->
+<div class="card">
+    <h3>Case 3: Right-Click for Context Menu</h3>
+    <button id="contextBtn">Right-Click Me</button>
+
+    <div id="contextMenu" style="display: none; background: rgb(252, 250, 250); padding: 10px;">
+      <div>Edit</div>
+      <div>Delete</div>
+    </div>
+
+</div>
+
+
+<!-- case 4 -->
+
+<div class="card" >
+    <h3>Case 4: Background Change</h3>
+     <input type="text" onkeydown="keyDownFunc()" onkeyup="keyUpFunc()" placeholder="Type here..." style="outline: none;">
+</div>
+
+
+</div>
+
+
+
+<div class="mid" style="transform: translateY(150px); margin: 140px; background-color: bisque; height: 90px; padding-left:25px; padding-right: 25px;">
+  <h1> Here's the JavaScript Events </h1>
+</div>
+
+<div class="right">
+  <!-- case 5 -->
+
+<div class="card">
+    <h3>Case 5: Hover Over the Button</h3>
+  <button id="hoverBtn">Hover Me</button>
+</div>
+
+
+<!-- case 6 -->
+
+<div class="card">
+  <h3>Case 6: Click the Button to Load</h3>
+
+  <button id="loadBtn">
+    <span id="btnText">Load Something</span>
+    <div class="spinner" id="spinner"></div>
+  </button>
+</div>
+
+
+<!-- case 7 -->
+
+<div class="card">
+  <h3>Case 7: Trigger Button with Enter</h3>
+  <p>Press the Enter key to simulate a button click.</p>
+  <button id="clickBtn">Click Me</button>
+</div>
+
+
+<!-- case 8 -->
+
+<div class="card">
+  <h3>Case 8: Toggle Button Visibility</h3>
+  <p class="instruction">Press <strong>Ctrl + B</strong> to show/hide the button below.</p>
+
+  <button id="toggleBtn" class="hidden1">Toggle Me</button>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+<script>
+// Case 1: Long Press
+const btn = document.getElementById("longPressBtn");
+const progress = document.getElementById("progress");
+let timer;
+
+  btn.addEventListener("mousedown", () => {
+    progress.style.width = "100%";
+    timer = setTimeout(() => alert("Saved!"), 1000);
+  });
+
+  btn.addEventListener("mouseup", () => {
+    clearTimeout(timer);
+    progress.style.width = "0%";
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    clearTimeout(timer);
+    progress.style.width = "0%";
+  });
+
+// Case 2: Double Click to Toggle Theme
+toggleThemeBtn.addEventListener("dblclick", () => {
+  document.body.classList.toggle("dark");
+  
+document.querySelectorAll(".card").forEach(card => {
+    card.classList.toggle("dark");
+  });
+
+});
+
+
+// Case 3: Right-Click Context Menu
+const contextBtn = document.getElementById("contextBtn");
+const contextMenu = document.getElementById("contextMenu");
+
+contextBtn.addEventListener("contextmenu", function(event) {
+  event.preventDefault(); // stop default right-click menu
+  contextMenu.style.display = "block"; // just show the menu
+});
+
+document.addEventListener("click", function() {
+  contextMenu.style.display = "none"; // hide the menu when clicking anywhere else
+});
+
+
+
+//Case 4 : Background change
+function keyDownFunc() {
+    document.body.style.backgroundColor = "lightblue";
+}
+function keyUpFunc() {
+    document.body.style.backgroundColor = "white";
+}
+
+
+//Case 5 :Mouse hover
+const button = document.getElementById("hoverBtn");
+
+// Add the "grow" class on mouseover
+button.addEventListener("mouseover", () => {
+  button.classList.add("grow");
+});
+
+// Remove the "grow" class when mouse leaves
+button.addEventListener("mouseout", () => {
+  button.classList.remove("grow");
+});
+
+
+
+
+//case 6 : Loading when click
+const btns = document.getElementById("loadBtn");
+const btnText = document.getElementById("btnText");
+const spinner = document.getElementById("spinner");
+
+btns.addEventListener("click", () => {
+  btnText.classList.add("hidden");     // Hide the button text
+  spinner.style.display = "block";     // Show spinner
+
+// Simulate loading for 2 seconds
+setTimeout(() => {
+  spinner.style.display = "none";    // Hide spinner
+  btnText.classList.remove("hidden");// Show button text again
+  alert("Loading complete!");
+}, 2000);
+});
+
+
+
+
+//case 7 :Button clicked by enter key
+
+const button1 = document.getElementById("clickBtn");
+
+// Perform button click on Enter key press
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    button1.click(); // simulate click
+  }
+});
+
+// Button action
+button1.addEventListener("click", function() {
+  alert("Button clicked by Enter key!");
+});
+
+
+//case : 8 Toggle button when clt + b is pressed
+const toggleBtn = document.getElementById("toggleBtn");
+
+document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key.toLowerCase() === "b") {
+    toggleBtn.classList.toggle("hidden1");
+    e.preventDefault(); // Prevent browser default behavior (like bookmarks)
+  }
+});
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat (Light/Dark Mode)</title>
+  <style>
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+      padding: 15px;
+      font-weight: bold;
+      font-size: 1.3rem;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .chat {
+      padding: 20px;
+      height: 300px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 70%;
+    }
+
+    .me {
+      background-color: #007bff;
+      color: white;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .other {
+      background-color: #e0e0e0;
+      color: black;
+      text-align: left;
+    }
+
+    .theme-switcher {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    select {
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Light mode */
+    .light-mode {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .light-mode .chat {
+      background-color: #f5f5f5;
+    }
+
+    /* Dark mode */
+    .dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .dark-mode .chat {
+      background-color: #1e1e1e;
+    }
+
+    .dark-mode .message.other {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .dark-mode .message.me {
+      background-color: #4e9eff;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <div class="container">
+    <div class="header">Chat</div>
+    <div class="chat">
+      <div class="message other">Hey! What's up?</div>
+      <div class="message me">All good! You?</div>
+      <div class="message other">Just chilling 😎</div>
+      <div class="message me">Nice! Wanna catch up later?</div>
+    </div>
+  </div>
+
+  <div class="theme-switcher">
+    <label>🌗 Switch Theme: </label>
+    <select onchange="document.body.className = this.value + '-mode'">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </div>
+
+</body>
+</html>

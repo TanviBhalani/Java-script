@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light/Dark Theme</title>
+</head>
+<body>
+
+<select onchange="changeFunc(this)">
+    <option value="yellow">Yellow</option>
+    <option value="purple">Purple</option>
+</select>
+
+
+
+<script>
+function changeFunc(selectObj) {
+    document.body.style.backgroundColor = selectObj.value;
+}
+</script>
+
+    
+</body>
+</html>

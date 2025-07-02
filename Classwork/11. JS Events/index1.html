@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Dark theme with video</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">journey</a>
+        <div class="right">
+            <!-- <select onchange="changeFunc(this)">
+              <option value="white">Light</option>
+              <option value="black">Dark</option>
+            </select>
+            <div class="btns lightDark">
+                <ion-icon name="moon-outline"></ion-icon>
+                <ion-icon name="sunny-outline"></ion-icon>
+            </div> -->
+             <!-- Icon toggle -->
+           <div class="btns lightDark">
+                <ion-icon name="moon-outline" id="darkToggle" title="Light mode"></ion-icon>
+                <ion-icon name="sunny-outline" id="lightToggle" title="Dark mode"></ion-icon>
+            </div>
+            <div class="btns menuToggle">
+                <ion-icon name="menu-outline"></ion-icon>
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </div>
+    </header>
+    <ul class="navigation">
+        <li>
+            <a href="./index1.html" class="active"><ion-icon name="home-outline"></ion-icon></a>
+        </li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">FEATURES</a></li>
+        <li><a href="#">CONTACT</a></li>
+    </ul>
+    <section class="main">
+        <video src="./video1.mp4" 
+        autoplay 
+        muted 
+        loop  
+        type="mp4"
+        ></video>
+        <img class="mask" src="./images-tree-silhouette-png-11.png" alt="">
+        <h2>Forest</h2>
+    </section>
+    
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="./script1.js"></script>
+</body>
+</html>

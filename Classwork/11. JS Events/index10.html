@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacts Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: var(--active-bg);
+    }
+
+    .theme-switcher-inside {
+      text-align: right;
+      padding: 10px 15px 0;
+    }
+
+    .theme-switcher-inside select {
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+      background-color: var(--active-bg);
+      color: var(--text);
+    }
+
+    .contact-list {
+      padding: 15px;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .email {
+      font-size: 0.9rem;
+      color: var(--subtext);
+    }
+
+    .send-btn {
+      background: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .add-contact {
+      background: royalblue;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* LIGHT THEME */
+    .light-mode {
+      --bg: #ffffff;
+      --text: #000000;
+      --subtext: #555;
+      --border: #ddd;
+      --active-bg: #f3f3f3;
+      --button-bg: #007bff;
+    }
+
+    /* DARK THEME */
+    .dark-mode {
+      --bg: #121212;
+      --text: #ffffff;
+      --subtext: #aaa;
+      --border: #333;
+      --active-bg: #1e1e1e;
+      --button-bg: #4e9eff;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <div class="container">
+    <div class="tabs">
+      <div class="tab active">Friends</div>
+      <div class="tab">Groups</div>
+    </div>
+
+    <!-- 🌗 Theme Switcher inside the card -->
+    <div class="theme-switcher-inside">
+      <label>Theme:</label>
+      <select onchange="document.body.className = this.value + '-mode'">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+
+    <!-- 📇 Contact List -->
+    <div class="contact-list">
+      <div class="contact">
+        <div class="contact-info">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=1" />
+          <div>
+            <div class="name">Kingsley Ezechukwu</div>
+            <div class="email">Designwithkingsley@yahoo.com</div>
+          </div>
+        </div>
+        <button class="send-btn">Send</button>
+      </div>
+
+      <div class="contact">
+        <div class="contact-info">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=2" />
+          <div>
+            <div class="name">Chiamaka Nzeh</div>
+            <div class="email">Chiamakanzeh@yahoo.com</div>
+          </div>
+        </div>
+        <button class="send-btn">Send</button>
+      </div>
+
+      <div class="contact">
+        <div class="contact-info">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=3" />
+          <div>
+            <div class="name">Michael Williams</div>
+            <div class="email">Michaelwilliams@yahoo.com</div>
+          </div>
+        </div>
+        <button class="send-btn">Send</button>
+      </div>
+
+      <div class="contact">
+        <div class="contact-info">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=4" />
+          <div>
+            <div class="name">Queensley Janet</div>
+            <div class="email">Queensley@yahoo.com</div>
+          </div>
+        </div>
+        <button class="send-btn">Send</button>
+      </div>
+
+      <div class="contact">
+        <div class="contact-info">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=5" />
+          <div>
+            <div class="name">Simon Camara</div>
+            <div class="email">Simon@yahoo.com</div>
+          </div>
+        </div>
+        <button class="send-btn">Send</button>
+      </div>
+    </div>
+
+    <div class="add-contact">+ Add Contact</div>
+  </div>
+
+</body>
+</html>
+

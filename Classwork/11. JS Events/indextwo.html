@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Box</title>
+</head>
+<body>
+    <style>
+        #box {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    margin: 20px auto;
+    transition: background-color 0.3s;
+}
+
+#btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+</style>
+
+    <div id="box"></div>
+    <button id="btn">Change Color</button>
+
+<script>
+ let box = document.querySelector("#box");
+let btn = document.querySelector("#btn");
+
+let arr = ["black", "green", "yellow", "brown", "red"];
+let i = 0;
+
+function magic() {
+    box.style.backgroundColor = arr[i];
+    if (i<arr.length) {
+        i+= 1;
+    } else {
+        i = 0;
+    }
+}
+</script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+text-align: center;
+} 
+#box {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    margin: 50px auto;
+}
+#img{
+    width: 400px;
+    height: 400px;
+}
+#btn{
+    background-color: transparent;
+    border: 2px solid black;
+    padding: 10px 19px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div id="box">
+            <img src="" id="img" alt="">
+        </div>
+        <button id="btn" onclick="magic()">Magic !</button>
+    </div>
+
+
+    <script>
+        let img = document.querySelector("img");
+let btn = document.querySelector("btn");
+
+let arr = ["slide-16.jpg","slide-2.webp","slide-19.jpg"];
+
+let i = 0;
+
+function magic(){
+    if(i<arr.length){
+        img.src = arr[i];
+        i++;
+    }else{
+        i = 0;
+    }
+}
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider with Buttons</title>
+  <style>
+    #slider {
+      width: 400px;
+      height: 300px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+    }
+    #controls {
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Image Slider</h2>
+  <img id="slider" src="" alt="Image Slider">
+  
+  <div id="controls">
+    <button onclick="prevImage()">Previous</button>
+    <button onclick="nextImage()">Forward</button>
+  </div>
+
+  <script>
+    const arr = [
+      'one.jpeg',
+      'two.jpeg',
+      'three.jpeg',
+      'Untitled.jpeg'
+    ];
+
+    let i = 0;
+    const img = document.getElementById('slider');
+
+    // Function to update the image source
+    function magic() {
+      img.src = arr[i];
+    }
+
+    // Show next image
+    function nextImage() {
+      if (i < arr.length - 1) {
+        i++;
+      } else {
+        i = 0;
+      }
+      magic();
+    }
+
+    // Show previous image
+    function prevImage() {
+      if (i > 0) {
+        i--;
+      } else {
+        i = arr.length - 1;
+      }
+      magic();
+    }
+
+    // Initialize with first image
+    magic();
+  </script>
+
+</body>
+</html>
