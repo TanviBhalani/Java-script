@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Slider</title>
+  <style>
+    body {
+      background-color: #d3d9ce;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .nav {
+      display: flex;
+      padding: 20px 30px;
+      align-items: center;
+    }
+    .left {
+      font-family: serif;
+      text-transform: uppercase;
+      font-size: 30px;
+      font-weight: 600;
+      margin-right: 50px;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+    li a {
+      font-size: 18px;
+      color: black;
+      text-decoration: none;
+    }
+    .right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .main{
+      margin-left: 20px;
+      display: flex;
+    }
+    .gradient{
+      width: 300px;
+      border-radius: 145px;
+      height: 500px;
+      background: #74aec4;
+      background: linear-gradient(180deg, rgba(116, 174, 196, 1) 0%, rgba(138, 191, 160, 1) 50%, rgba(245, 236, 157, 1) 100%);
+      margin-top: 20px;
+      transform: translateX(150px);   
+    }
+    #slider {
+      width: 500px;
+      height: 520px;
+      object-fit: contain;
+      display: block;
+      margin-left: 40px;
+    }
+    #controls {
+      border: none;
+      text-align: center;
+      margin-top: 5px;
+      margin-right: -250px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #d3d9ce ;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <div class="left">Collections</div>
+    <div class="mid">
+      <ul>
+        <li><a href="#">New Ones</a></li>
+        <li><a href="#">Mens</a></li>
+        <li><a href="#">Womens</a></li>
+        <li><a href="#">Stories</a></li>
+      </ul>
+    </div>
+    <div class="right">
+      <p>Find a Store</p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="#646363" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0"/><path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1M3 12c0 2.09.713 4.014 1.908 5.542A8.99 8.99 0 0 1 12.065 14a8.98 8.98 0 0 1 7.092 3.458A9 9 0 1 0 3 12m9 9a8.96 8.96 0 0 1-5.672-2.012A6.99 6.99 0 0 1 12.065 16a6.99 6.99 0 0 1 5.689 2.92A8.96 8.96 0 0 1 12 21"/></g></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#646363" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </div>
+  </div>
+
+  <div class="main" >
+    <div class="gradient">
+      <img id="slider" src="" alt="Image Slider"  />
+      <div id="controls" >
+          <button onclick="prevImage()"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 32 32"><path fill="#000" d="m10.813 9.28l-6 6l-.72.72l.72.72l6 6l1.406-1.44L7.936 17H28v-2H7.937l4.282-4.28l-1.408-1.44z"/></svg></button>
+          <button onclick="nextImage()"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 32 32"><path fill="#000" d="m21.188 9.28l-1.407 1.44L24.063 15H4v2h20.063l-4.282 4.28l1.407 1.44l6-6l.72-.72l-.72-.72z"/></svg></button>
+      </div>
+
+    </div>
+
+
+    <div class="text">
+      <p style="margin-left: 850px;margin-top: 80px; font-size: 25px; font-weight: 500; font-family:cursive;">New Collection </p>
+      <p style="margin-left: 720px; font-size: 68px; font-weight: 500; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-top: -10px; letter-spacing: 5px;">Originals </p>
+      <p style="margin-left: 775px; font-size: 68px; font-weight: 500; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-top: -70px;">Hooded </p>
+      <p style="margin-left: 575px; font-size: 68px; font-weight: 500; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-top: -70px; letter-spacing: 7px;">Windbreaker </p>
+      <p style="margin-left: 475px; font-size: 24px; font-weight: 500; font-family:Arial, Helvetica, sans-serif; margin-top: -30px; text-align: end; line-height: 30px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Voluptatum quam non vel itaque sit quasi. </p>
+      <button style="cursor: pointer;;border: none;border-radius: 5px;color: white;background-color: black;margin-left: 800px; font-size: 16px; font-weight: 500; font-family:Arial, Helvetica, sans-serif; text-align: end; line-height: 30px;">Explore More </button>
+    </div>
+
+    
+
+
+  </div>
+  
+
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
