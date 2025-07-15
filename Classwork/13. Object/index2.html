@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .item { margin-bottom: 20px; }
+    button { padding: 5px 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <h1>🛒 Shopping Cart</h1>
+  <div id="cart-container"></div>
+
+  <script>
+    // Array of items in the cart
+    let cart = [
+      { id: 1, name: "T-shirt", price: 20, quantity: 2 }
+    ];
+
+    const cartContainer = document.getElementById("cart-container");
+
+    // Function to display cart items
+    function displayCart() {
+      cartContainer.innerHTML = ""; // Clear previous content
+
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "item";
+
+        itemDiv.innerHTML = `
+          <strong>${item.name}</strong><br>
+          Price: $${item.price}<br>
+          Quantity: ${item.quantity}<br>
+          <button onclick="increaseQuantity(${index})">+ Increase</button>
+        `;
+
+        cartContainer.appendChild(itemDiv);
+      });
+    }
+
+    // Function to increase quantity
+    function increaseQuantity(index) {
+      cart[index].quantity += 1;  // ← This is the important line!
+      displayCart(); // Refresh the display
+    }
+
+    // Initial display
+    displayCart();
+  </script>
+
+</body>
+</html>
