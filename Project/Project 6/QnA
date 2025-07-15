@@ -1,0 +1,53 @@
+1. What is OOP?
+=> OOP refers to those programming languages that mostly use objects. OOP basically refers real life entities/set up like
+   inheritance, hiding and polymorphism.
+
+
+
+2. Why OOP is important? 
+=> OOP (Object-Oriented Programming) is important because it helps make code more organized, reusable,  and easier to manage,especially in larger or real-world projects.  
+
+
+
+3. What is an object in JavaScript? 
+=> An object is a collection of key-value pairs (properties and methods).
+                         OR
+    An Object is an instance of a class.
+
+
+
+4. What is a class?
+=> A blueprint for creating objects with the same properties and methods.
+
+
+
+5. What is the difference between a class and an object?
+=> Object: Real instance created using a class
+=> Class: Template or blueprint
+
+
+
+6. What is a constructor in JavaScript?
+=> A special method called automatically when a new object is created from a class.
+
+
+
+7. What is this keyword?
+=> Refers to the current object (the object that is calling the method).
+
+
+
+8. Can we use OOP in JavaScript without classes?
+=> Yes, using constructor functions and prototypes (older style before ES6).
+
+
+
+
+9. What is a prototype in JavaScript?
+=> Every object in JS has a prototype. It's like a parent object from which properties and methods can be inherited.
+
+
+
+10. What is the difference between function and class in JavaScript?
+=> function: Used for older-style constructor functions.
+=> class: Modern and easier syntax for creating OOP structures.
