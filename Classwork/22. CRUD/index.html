@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Cards</title>
+    <style>
+        .box {
+            width: 150px;
+            height: auto;
+            text-align: center;
+            background-color: aquamarine;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        button{
+            cursor: pointer;
+        }
+        .deleteBtn{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="text" id="age" placeholder="Enter your age">
+    <button id="SubBtn">Submit</button>
+
+    <div id="cards"></div>
+
+    <script>
+
+        //Create :
+
+        let name = document.getElementById("name");
+        let age = document.getElementById("age");
+        let SubBtn = document.getElementById("SubBtn");
+        let cards = document.getElementById("cards");
+
+        let editIndex = null;
+
+        SubBtn.addEventListener("click", () => {
+            let oldRecord = JSON.parse(localStorage.getItem("Students")) || [];
+
+            if(editIndex == null){
+                let obj = { id: Date.now(),
+                name: name.value, 
+                age: age.value 
+            };
+
+            oldRecord.push(obj);
+            }
+
+            else{
+                let singleData = oldRecord.find((item) => item.id == editIndex);
+                singleData.name = name.value
+                singleData.age = age.value
+            }
+
+            localStorage.setItem("Students", JSON.stringify(oldRecord));
+
+            name.value = "";
+            age.value = "";
+            editIndex = null;
+            SubBtn.innerText = "Submit"
+
+            getData();
+        });
+
+        function getData() {
+            let allData = JSON.parse(localStorage.getItem("Students")) || [];
+
+            cards.innerHTML = "";
+
+            allData.forEach(Student => {
+                let div = document.createElement("div");
+                let Name = document.createElement("h1");
+                let Age = document.createElement("h1");
+                let deleteBtn = document.createElement("button");
+                let editBtn = document.createElement("button");
+
+                Name.innerText = Student.name;
+                Age.innerText = Student.age;
+                deleteBtn.innerText = "Delete";
+                editBtn.innerText = "Edit"
+
+                div.classList.add("box");
+                deleteBtn.classList.add("deleteBtn")
+                editBtn.classList.add("editBtn")
+
+                deleteBtn.setAttribute("data-id", Student.id)
+                editBtn.setAttribute("data-id", Student.id) 
+
+                div.append(Name);
+                div.append(Age);
+                div.append(deleteBtn)
+                div.append(editBtn)
+
+                cards.append(div);
+            });
+
+
+
+
+
+
+            let deleteBtns = document.querySelectorAll(".deleteBtn")
+
+            deleteBtns.forEach((btn)=>{
+                btn.addEventListener("click",()=>{
+                    let id = btn.getAttribute("data-id")
+                    let allData = JSON.parse(localStorage.getItem("Students"));
+
+                    let newData = allData.filter((item)=>item.id != id)
+                    localStorage.setItem("Students",JSON.stringify(newData))
+
+                    getData()
+                })
+            });
+
+
+
+
+
+            let editBtns = document.querySelectorAll(".editBtn");
+
+            editBtns.forEach((btn)=>{
+                btn.addEventListener("click",()=>{
+                    let id = btn.getAttribute("data-id");
+                    let singleData = allData.find((item)=> item.id == id)
+
+                    name.value = singleData.name
+                    age.value = singleData.age
+                    SubBtn.innerText = "Update"
+                    editIndex = singleData.id
+                })
+            })
+
+
+
+        }
+
+        getData();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(117, 111, 104);
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box{
+            width: 300px;
+            background-color: rgb(255, 255, 254);
+            padding: 25px;
+        }
+        .box h1{
+            text-align: center;
+        }
+        input{
+            padding: 5px;
+            width: 75%;
+            border-radius: 5px;
+        }
+        .box button{
+            padding: 5px;
+            width: 50px;
+            background-color: rgb(20, 159, 197);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+        ul {
+           list-style-type: none;
+           padding: 0;
+           margin-top: 20px;
+        }
+        li{
+            background-color: #f4f4f4;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        .action button{
+            margin-left: 5px;
+            padding: 5px 8px;
+            font-size: 12px;
+            background-color: rgb(173, 7, 7);
+        }
+        .action .done-btn{
+            background-color: green;
+        }
+        li.completed{
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+
+    <div class="box">
+        <h1>To do list</h1>
+        <input type="text" id="textinput" placeholder="Enter your Task">
+        <button id="addbtn">Add</button>
+        <ul id="list"></ul>
+    </div>
+    
+
+<script>
+let textinput = document.getElementById("textinput");
+let addbtn = document.getElementById("addbtn")
+let list = document.getElementById("list")
+
+addbtn.addEventListener("click", () =>{
+    let press = textinput.value.trim();
+
+    if(press === ''){
+        alert('Please enter the task!')
+    }
+
+    let li = document.createElement("li")
+    li.innerText = press;
+
+    let action = document.createElement("div")
+    action.classList.add("action")
+
+    let doneBtn = document.createElement("button")
+    doneBtn.innerText = "Done"
+    doneBtn.classList.add('done-btn')
+    doneBtn.onclick = () =>{
+        li.classList.toggle("completed")
+    }
+
+    let deleteBtn = document.createElement("button")
+    deleteBtn.innerText = "Delete"
+    deleteBtn.onclick = () =>{
+        list.removeChild(li)
+    }
+
+    action.appendChild(doneBtn)
+    action.appendChild(deleteBtn)
+    li.appendChild(action)
+
+    list.appendChild(li)
+    textinput.value = ""
+
+});
+
+    
+</script>
+
+</body>
+</html>
+

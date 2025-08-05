@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 700px;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 75%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background-color: #f4f4f4;
+      padding: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .actions button {
+      background-color: crimson;
+      padding: 5px 8px;
+      font-size: 12px;
+    }
+
+    .actions .done-btn {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="todo-container">
+  <h2>To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter a task" autocomplete="off">
+  <button id="addBtn">Add</button>
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  const addBtn = document.getElementById("addBtn");
+  const taskInput = document.getElementById("taskInput");
+  const taskList = document.getElementById("taskList");
+
+  addBtn.addEventListener("click", () => {
+    const taskText = taskInput.value.trim();
+
+    if (taskText === "") {
+      alert("Please enter a task!");
+      return;
+    }
+
+    const li = document.createElement("li");
+    li.innerText = taskText;
+
+    const actions = document.createElement("div");
+    actions.classList.add("actions");
+
+    const doneBtn = document.createElement("button");
+    doneBtn.innerText = "Done";
+    doneBtn.classList.add("done-btn");
+    doneBtn.onclick = () => {
+      li.classList.toggle("completed");
+    };
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "Delete";
+    deleteBtn.onclick = () => {
+      taskList.removeChild(li);
+    };
+
+    actions.appendChild(doneBtn);
+    actions.appendChild(deleteBtn);
+    li.appendChild(actions);
+
+    taskList.appendChild(li);
+    taskInput.value = "";
+  });
+</script>
+
+</body>
+</html>

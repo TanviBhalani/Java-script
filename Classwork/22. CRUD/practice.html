@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 180px;
+            height: 190px;
+            background-color: bisque;
+            padding: 5px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        #cards{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" placeholder="Enter your Name" id="name">
+    <input type="text" placeholder="Enter your Age" id="age">
+    <input type="submit" id="btn">
+
+    <div id="cards"></div>
+
+    <script>
+       let name = document.getElementById("name")
+       let age = document.getElementById("age")
+       let btn = document.getElementById("btn")
+       let cards = document.getElementById("cards")
+
+       btn.addEventListener("click", () =>{
+         let oldRecord = JSON.parse(localStorage.getItem("Students")) || [];
+
+         let obj = { id : Date.now(),
+            name : name.value,
+            age: age.value
+         }
+
+         oldRecord.push(obj);
+
+         localStorage.setItem("Students", JSON.stringify(oldRecord));
+
+         name.value = "";
+         age.value = "";
+
+         getData();
+       })
+
+       function getData(){
+         let allData = JSON.parse(localStorage.getItem("Students")) || [];
+
+         cards.innerHTML = ""
+
+         allData.forEach(Students => {
+            let div = document.createElement("div")
+            let Name = document.createElement("h1")
+            let Age = document.createElement("h1")
+            let deleteBtn = document.createElement("button")
+            let editBtn = document.createElement("button")
+
+            Name.innerText = Students.name;
+            Age.innerText = Students.age;
+            deleteBtn.innerText = "Delete"
+            editBtn.innerText = "Edit"
+
+            div.classList.add("box")
+            deleteBtn.classList.add("deleteBtn")
+            editBtn.classList.add("editBt")
+
+            div.append(Name);
+            div.append(Age);
+
+            cards.append(div);
+         }) 
+       }
+
+       getData();
+
+    </script>
+    
+</body>
+</html>

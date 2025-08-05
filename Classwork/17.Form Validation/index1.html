@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Validation</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      font-family: sans-serif;
+    }
+    #form {
+      width: 400px;
+      padding: 30px;
+      background-color: whitesmoke;
+      border-radius: 4px;
+      font-size: 12px;
+      margin: 100px auto;
+    }
+    #form h1 {
+      color: #0f2027;
+      text-align: center;
+    }
+    #form button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100px;
+      color: white;
+      background-color: rgb(41, 57, 194);
+      border: none;
+      border-radius: 4px;
+      margin-left: 155px;
+      cursor: pointer;
+    }
+    .input-control {
+      display: flex;
+      flex-direction: column;
+    }
+    .input-control input {
+      border: 2px solid #f0f0f0;
+      border-radius: 4px;
+      font-size: 12px;
+      padding: 10px;
+      width: 92%;
+    }
+    .input-control input:focus {
+      outline: none;
+    }
+    .input-control.success input {
+      border-color: #09c372;
+    }
+    .input-control.error input {
+      border-color: #ff3860;
+    }
+    .input-control .error {
+      color: #ff3860;
+      font-size: 10px;
+      height: 13px;
+      margin-top: 3px;
+    }
+    .input-control label {
+      font-size: 15px;
+      margin-top: 5px;
+      margin-bottom: 7px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="form">
+      <h1>Registration</h1>
+
+      <div class="input-control">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <div class="error"></div>
+      </div>
+
+      <div class="input-control">
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2" id="password2" />
+        <div class="error"></div>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('form');
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const password2 = document.getElementById('password2');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      validateInputs();
+    });
+
+    const setError = (element, message) => {
+      const inputControl = element.parentElement;
+      const errorDisplay = inputControl.querySelector('.error');
+
+      errorDisplay.innerText = message;
+      inputControl.classList.add('error');
+      inputControl.classList.remove('success');
+    };
+
+    const setSuccess = element => {
+      const inputControl = element.parentElement;
+      const errorDisplay = inputControl.querySelector('.error');
+
+      errorDisplay.innerText = '';
+      inputControl.classList.add('success');
+      inputControl.classList.remove('error');
+    };
+
+    const isValidEmail = email => {
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return regex.test(String(email).toLowerCase());
+    };
+
+    const isValidPassword = password => {
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return regex.test(password);
+    };
+
+
+    const validateInputs = () => {
+      const usernameValue = username.value.trim();
+      const emailValue = email.value.trim();
+      const passwordValue = password.value.trim();
+      const password2Value = password2.value.trim();
+
+      if (usernameValue === '') {
+        setError(username, 'Username is required');
+      } else {
+        setSuccess(username);
+      }
+
+      if (emailValue === '') {
+        setError(email, 'Email is required');
+      } else if (!isValidEmail(emailValue)) {
+        setError(email, 'Provide a valid email address');
+      } else {
+        setSuccess(email);
+      }
+
+      if (passwordValue === '') {
+        setError(password, 'Password is required');
+      } else if (!isValidPassword(passwordValue)) {
+        setError(password, 'Password must have at least 8 characters, including uppercase, lowercase, number, and symbol');
+      } else {
+        setSuccess(password);
+      }
+
+
+      if (password2Value === '') {
+        setError(password2, 'Please confirm your password');
+      } else if (password2Value !== passwordValue) {
+        setError(password2, "Passwords don't match");
+      } else {
+        setSuccess(password2);
+      }
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <section id="header" style="top: 0px;">
+        <a href="#"><img src="./images/cara black logo.png" class="logo" alt="" style="width: 100px;"></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                 <li><a href="cart.html">
+                     <i class="fas fa-shopping-bag" style="color: #494a4b;"></i>
+                     <span id="cart-count" style="
+                        position: absolute;
+                        top: -8px;
+                        right: -10px;
+                        background: rgb(71, 70, 70);
+                        color: white;
+                        padding-left: -3px;
+                        font-size: 12px;
+                        border-radius: 50%;
+                        padding: 2px 6px;
+                        line-height: 1;">
+                    </span>
+                </a></li>
+
+            </ul>
+        </div>
+    </section>
+
+    <section  class="one" style="margin: 40px;display: flex;">
+        <div class="left">
+            <img src="./images/product/2.jpg" alt=""  style="margin-left: 190px; background-size: cover;width: 60%; margin-top: 40px;">
+        </div>
+        <div class="right" style="margin-top: 30px;">
+            <h2 style="font-size: 32px; line-height: 39px; font-weight: 500; margin: 40px 40px 20px;">Vintage Fish Octopus Art Vintage Art Print Casual</h2>
+            <div class="star" style="display: flex; gap: 5px; margin-left: 40px; ">
+                <i class="fas fa-star" style="color: #ffb521"></i>
+                <i class="fas fa-star" style="color: #ffb521"></i>
+                <i class="fas fa-star" style="color: #ffb521"></i>
+                <i class="fas fa-star" style="color: #ffb521"></i>
+                <i class="fas fa-star" style="color: #ffb521"></i>
+                <p style="font-size: 14px; margin-top: -1px;">(35)</p>
+            </div>
+            <span style="font-size: 22px;margin-left: 40px; color: black; font-weight: 600;">Rs.499.00 
+                <s style="color: gray; font-weight: 400; font-size: 16px;">Rs.999.00</s> 
+                <span style="background-color: black; padding: 7px 17px; margin-left: 20px; margin-top: -3px; color: white; font-size: 10px; font-weight: 400; border-radius: 50px;">SAVE 50%</span>
+            </span>
+            <p style="font-size: 15px; font-weight: 400; color: black; margin-left: 40px; margin-top: 5px;">Tax included.</p>
+            <p style="text-decoration: underline;font-size: 15px; font-weight: 400; color: black; margin-left: 40px; margin-top: 5px;cursor: pointer;">Size Chart</p>
+            <p style="font-size: 15px; font-weight: 400; color: black; margin-left: 40px; margin-top: 10px;">Buy Any 3 Shirts @ Just Rs.1700/-</p>
+            <p style="font-size: 15px; font-weight: 400; color: black; margin-left: 40px; margin-top: -8px;">Buy Any 2 Shirts @ Just Rs.1100/-</p>
+           
+
+            <div class="size-selector">
+                <p>Select Size:</p>
+                <div class="sizes">
+                    <button class="size-btn active">S</button>
+                    <button class="size-btn">M</button>
+                    <button class="size-btn">L</button>
+                    <button class="size-btn">XL</button>
+                    <button class="size-btn">XXL</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="product-actions">
+               <p class="label" style="color: black; padding-top: 10px;">Quantity</p>
+
+               <div class="action-row">
+               <div class="quantity-selector">
+                 <button onclick="decreaseQty()">-</button>
+                 <span id="quantity">1</span>
+                 <button onclick="increaseQty()">+</button>
+               </div>
+
+               <button class="add-to-cart" onclick="addToCart()">Add to cart</button>
+            </div>
+
+            <button class="buy-now" onclick="buyNow()">Buy it Now</button>
+        </div>
+
+    </section>
+
+
+
+
+<script>
+
+//differect sizes button selection:
+
+const sizeButtons = document.querySelectorAll('.size-btn');
+  sizeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    sizeButtons.forEach((b)=> {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+  });
+});
+
+
+
+//quantity of products  :
+
+let quantity = 1;
+
+const quantityEl = document.getElementById('quantity');
+
+function updateQuantityDisplay() {
+  quantityEl.textContent = quantity;
+}
+
+
+function increaseQty() {
+    quantity++;
+    updateQuantityDisplay();
+}
+
+function decreaseQty() {
+    if (quantity > 1) {
+      quantity--;
+      updateQuantityDisplay();
+    }
+}
+
+
+
+
+
+function addToCart() {
+  const selectedSize = document.querySelector(".size-btn.active").textContent;
+
+  const product = {
+    name: "Vintage Fish Octopus Art Vintage Art Print Casual",
+    size: selectedSize,
+    quantity: quantity,
+    price: 499,
+    image: "./images/product/2.jpg"
+  };
+
+  // Save cart items as an array
+  let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  cart.push(product);
+  localStorage.setItem("cartItems", JSON.stringify(cart));
+
+  // Save cart count
+  localStorage.setItem("cartCount", cart.length);
+  updateCartCount();
+
+  // Go to cart page
+  window.location.href = "cart.html";
+}  
+
+
+  function updateCartCount() {
+    const count = localStorage.getItem("cartCount") || 0;
+    const cartCountElem = document.getElementById("cart-count");
+    if (cartCountElem) {
+      cartCountElem.textContent = count || "";
+    }
+  }
+  updateCartCount()
+
+
+
+
+</script>
+
+
+
+    
+</body>
+</html>

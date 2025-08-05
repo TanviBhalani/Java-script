@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Cards</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  padding: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  width: 250px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card h2 {
+  margin: 10px 0 5px;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <input type="text" id="pname" placeholder="Product Name" />
+    <input type="text" id="price" placeholder="Price" />
+    <textarea id="desc" placeholder="Description"></textarea>
+    <input type="text" id="imglink" placeholder="Image URL" />
+    <button id="btn">Add Product</button>
+  </div>
+
+  <div id="cards" class="cards-container"></div>
+
+
+
+
+  <script>
+    //Create:
+
+    let pname = document.getElementById("pname");
+    let price = document.getElementById("price");
+    let desc = document.getElementById("desc");
+    let imglink = document.getElementById("imglink");
+    let btn = document.getElementById("btn");
+    let cards = document.getElementById("cards");
+
+   btn.addEventListener("click", () => {
+   let oldProducts = JSON.parse(localStorage.getItem("Products")) || [];
+
+  let obj = {
+    id: Date.now(),
+    pname: pname.value,
+    price: price.value,
+    desc: desc.value,
+    image: imglink.value
+  };
+
+  oldProducts.push(obj);
+  localStorage.setItem("Products", JSON.stringify(oldProducts));
+
+  pname.value = "";
+  price.value = "";
+  desc.value = "";
+  imglink.value = "";
+
+  getData();
+});
+
+//Read:
+
+function getData() {
+  let allData = JSON.parse(localStorage.getItem("Products")) || [];
+
+  cards.innerHTML = "";
+
+  allData.forEach(function (product) {
+    let div = document.createElement("div");
+    div.classList.add("card");
+
+    div.innerHTML =
+      '<img src="' + product.image + '" />' +
+      '<h2>' + product.pname + '</h2>' +
+      '<p><strong>Price:</strong> ₹' + product.price + '</p>' +
+      '<p>' + product.desc + '</p>';
+
+    cards.appendChild(div);
+  });
+}
+
+getData();
+
+  </script>
+</body>
+</html>

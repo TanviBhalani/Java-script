@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 180px;
+            height: 190px;
+            background-color: bisque;
+            padding: 5px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        #cards{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Enter your Name:">
+    <input type="text" id="age" placeholder="Enter your Age:">
+    <button id="SubBtn">Submit</button>
+
+    <div id="cards"></div>
+
+    <script>
+        let name = document.getElementById("name")
+        let age = document.getElementById("age")
+        let btn = document.getElementById("SubBtn")
+        let cards = document.getElementById("cards")
+
+        btn.addEventListener("click", ()=>{
+           let oldRecord = JSON.parse(localStorage.getItem("Students")) || [];
+           
+           let obj = {id : Date.now(),
+            name : name.value,
+            age : age.value
+           }
+
+           oldRecord.push(obj);
+
+           localStorage.setItem("Students", JSON.stringify(oldRecord));
+
+           name.value = "";
+           age.value = "";
+
+        })
+
+        function getData(){
+            let allData = JSON.parse(localStorage.getItem("Students")) || [];
+
+            cards.innerHTML = "";
+
+            allData.forEach(Students => {
+                let div = document.createElement("div")
+                let Name = document.createElement("h1")
+                let Age = document.createElement("h1")
+
+                Name.innerText = Students.name;
+                Age.innerText = Students.age;
+
+                div.classList.add("box")
+
+                div.append(Name);
+                div.append(Age);
+
+                cards.append(div);
+            });
+
+
+            let deleteBtns = document.querySelectorAll(".deleteBtn")
+
+               deleteBtns.forEach((btn)=>{
+                btn.addEventListener("click",)
+            
+            })
+
+
+
+
+
+
+
+
+        }
+
+        getData();
+
+
+
+        
+
+
+    </script>
+</body>
+</html>
