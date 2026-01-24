@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 30px;
+            width: 900px;
+            height: 550px;
+        }
+        .left {
+            width: 450px;
+        }
+        input{
+            width: 100%;
+            padding: 6px;
+            margin: 6px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        button{
+            width: 100%;
+            padding: 8px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00c6ff;
+        }
+
+        .progress {
+            background: #ddd;
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .progress div {
+            height: 100%;
+            width: 0%;
+            background: #4facfe;
+            transition: 1s;
+        }
+
+        .right {
+            width: 390px;
+            text-align: center;
+        }
+
+        .chartInfo {
+            display: flex;
+        }
+        .infoBox{
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            font-weight: bold;
+            color: #111;
+            line-height: 1.6;
+        }
+        .infoBox span{
+            color: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="left">
+            <h3>Loan Calculator</h3>
+
+            <input type="number" id="loan" placeholder="Loan Amount ₹">
+            <div class="progress">
+                <div id="loanBar"></div>
+            </div>
+
+            <input type="number" id="rate" placeholder="Interest Rate %">
+            <div class="progress">
+                <div id="rateBar"></div>
+            </div>
+
+
+            <input type="number" id="time" placeholder="Tenure (Years)">
+            <div class="progress">
+                <div id="timeBar"></div>
+            </div>
+
+            <button onclick="calculateEMI()">Calculate</button>
+
+            <h4 id="emiResult"></h4>
+        </div>
+
+        <div class="right">
+            <h3>Total Amount Chart</h3>
+            <canvas id="myChart"></canvas>
+            <div id="chartInfo" class="infoBox" style="margin-top:10px; font-size:14px; font-weight:bold;">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        let loan = document.getElementById("loan")
+        let rate = document.getElementById("rate")
+        let time = document.getElementById("time")
+        let loanBar = document.getElementById("loanBar")
+        let rateBar = document.getElementById("rateBar")
+        let timeBar = document.getElementById("timeBar")
+        let chartInfo = document.getElementById("chartInfo")
+        let myChart = document.getElementById("myChart")
+        let emiResult = document.getElementById("emiResult")
+
+        function calculateEMI() {
+
+            let P = Number(loan.value);
+            let R = Number(rate.value);
+            let T = Number(time.value);
+
+
+            if (!P || !R || !T) {
+                alert("Enter all values");
+                return;
+            }
+
+            loanBar.style.width = (P / 1000000) * 100 + "%";
+            timeBar.style.width = (T / 30) * 100 + "%";
+            rateBar.style.width = (R / 100) * 100 + "%";
+
+            R = R / 12 / 100;
+            T = T * 12;
+
+            let growth = (1 + R) ** T;
+            let EMI = (P * R * growth) / (growth - 1);
+
+            let totalPayment = EMI * T;
+            let interest = totalPayment - P;
+
+            emiResult.innerHTML = "Monthly EMI: ₹" + EMI.toFixed(2);
+
+            document.getElementById("chartInfo").innerHTML =
+                "Principal: ₹" + P.toFixed(2) + "<br>" +
+                "Interest: ₹" + interest.toFixed(2) + "<br>" +
+                "Total: ₹" + totalPayment.toFixed(2);
+
+            drawChart(P, interest);
+        }
+
+
+        function drawChart(p, i) {
+            new Chart(document.getElementById("myChart"), {
+                type: "pie",
+                data: {
+                    labels: ["Principal", "Interest"],
+                    datasets: [{ data: [p, i] }]
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
